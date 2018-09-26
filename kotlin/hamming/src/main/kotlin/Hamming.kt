@@ -7,15 +7,15 @@ class Hamming {
             return when {
                 firstSequence.length != secondSequence.length -> throw IllegalArgumentException("left and right strands must be of equal length.")
                 else -> {
-                    var difference = 0
+                    var differences = 0
 
                     for (i in 0 until firstSequence.length) {
                         if (firstSequence[i] != secondSequence[i]) {
-                            difference++
+                            differences++
                         }
                     }
 
-                    difference
+                    differences
                 }
             }
         }
