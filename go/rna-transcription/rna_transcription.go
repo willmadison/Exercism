@@ -10,7 +10,7 @@ var (
 	uracil   = 'U'
 )
 
-var rnaNucleotidesByDNANucleotides = map[rune]rune{
+var rnaNucleotidesByDNANucleotide = map[rune]rune{
 	guanine:  cytosine,
 	cytosine: guanine,
 	thymine:  adenine,
@@ -21,7 +21,7 @@ func ToRNA(dna string) string {
 	var b bytes.Buffer
 
 	for _, n := range dna {
-		b.WriteRune(rnaNucleotidesByDNANucleotides[n])
+		b.WriteRune(rnaNucleotidesByDNANucleotide[n])
 	}
 
 	return b.String()
