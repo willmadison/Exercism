@@ -67,13 +67,8 @@ func (i IntList) Reverse() IntList {
 func (i IntList) Append(other IntList) IntList {
 	var appended IntList = []int{}
 
-	for _, v := range i {
-		appended = append(appended, v)
-	}
-
-	for _, v := range other {
-		appended = append(appended, v)
-	}
+	appended = append(appended, i...)
+	appended = append(appended, other...)
 
 	return appended
 }
