@@ -7,13 +7,11 @@ import "fmt"
 func Proverb(items []string) []string {
 	var stanzas []string
 
-	if len(items) > 1 {
+	if len(items) > 0 {
 		for i := 0; i < len(items)-1; i++ {
 			stanzas = append(stanzas, fmt.Sprintf("For want of a %v the %v was lost.", items[i], items[i+1]))
 		}
-	}
 
-	if len(items) > 0 {
 		stanzas = append(stanzas, fmt.Sprintf("And all for the want of a %v.", items[0]))
 	}
 
