@@ -1,42 +1,35 @@
 package scrabble
 
-import "strings"
+import "unicode"
 
-var pointsByLetter = map[rune]int{
-	'a': 1,
-	'b': 3,
-	'c': 3,
-	'd': 2,
-	'e': 1,
-	'f': 4,
-	'g': 2,
-	'h': 4,
-	'i': 1,
-	'j': 8,
-	'k': 5,
-	'l': 1,
-	'm': 3,
-	'n': 1,
-	'o': 1,
-	'p': 3,
-	'q': 10,
-	'r': 1,
-	's': 1,
-	't': 1,
-	'u': 1,
-	'v': 4,
-	'w': 4,
-	'x': 8,
-	'y': 4,
-	'z': 10,
-}
-
+// Score calculates the raw Scrabble points scored for a given word
+// without consideration for special tile locations (i.e. Double/Triple Word,
+// Double/Triple Letter, etc.).
 func Score(word string) int {
 	var score int
 
-	for _, c := range strings.ToLower(word) {
-		score += pointsByLetter[c]
+	for _, c := range word {
+		score += pointValue(c)
 	}
 
 	return score
+}
+
+func pointValue(c rune) int {
+	switch unicode.ToLower(c) {
+	case 'd', 'g':
+		return 2
+	case 'b', 'c', 'm', 'p':
+		return 3
+	case 'f', 'h', 'v', 'w', 'y':
+		return 4
+	case 'k':
+		return 5
+	case 'j', 'x':
+		return 8
+	case 'q', 'z':
+		return 10
+	default:
+		return 1
+	}
 }
